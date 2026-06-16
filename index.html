@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Night 🎬❤️</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════
+       PAGE 1 — The Proposal
+  ══════════════════════════════ -->
+  <div class="page active" id="page1">
+    <div class="progress-bar">
+      <div class="step-heart active">❤️</div><div class="step-line"></div>
+      <div class="step-heart">❤️</div><div class="step-line"></div>
+      <div class="step-heart">❤️</div><div class="step-line"></div>
+      <div class="step-heart">❤️</div><div class="step-line"></div>
+      <div class="step-heart">❤️</div><div class="step-line"></div>
+      <div class="step-heart">❤️</div>
+    </div>
+
+    <div class="emoji">🎬❤️</div>
+    <h2>Jaan,<br>movie night with me?</h2>
+    <p class="sub">Just us, snacks, and a great film 🍿</p>
+
+    <div class="buttons-row">
+      <button id="yes-btn" onclick="goToPage(2)">Yes 💖</button>
+      <button id="no-btn">No 🙈</button>
+    </div>
+
+    <p class="hint">Some invites don't take no for an answer ✨</p>
+  </div>
+
+  <!-- ══════════════════════════════
+       PAGE 2 — Reaction
+  ══════════════════════════════ -->
+  <div class="page" id="page2">
+    <div class="progress-bar">
+      <div class="step-heart done">❤️</div><div class="step-line done"></div>
+      <div class="step-heart active">❤️</div><div class="step-line"></div>
+      <div class="step-heart">❤️</div><div class="step-line"></div>
+      <div class="step-heart">❤️</div><div class="step-line"></div>
+      <div class="step-heart">❤️</div><div class="step-line"></div>
+      <div class="step-heart">❤️</div>
+    </div>
+
+    <div class="emoji" style="animation:none; font-size:68px">🥳</div>
+    <h2 style="margin-top:10px">HUH?? you said yes??</h2>
+    <p class="sub">okay i need a minute to process this</p>
+
+    <button class="btn btn-primary" onclick="goToPage(3)">okay okay! →</button>
+  </div>
+
+  <!-- ══════════════════════════════
+       PAGE 3 — Pick a Date
+  ══════════════════════════════ -->
+  <div class="page" id="page3">
+    <div class="progress-bar">
+      <div class="step-heart done">❤️</div><div class="step-line done"></div>
+      <div class="step-heart done">❤️</div><div class="step-line done"></div>
+      <div class="step-heart active">❤️</div><div class="step-line"></div>
+      <div class="step-heart">❤️</div><div class="step-line"></div>
+      <div class="step-heart">❤️</div><div class="step-line"></div>
+      <div class="step-heart">❤️</div>
+    </div>
+
+    <div style="font-size:32px; margin-bottom:6px">📅✨</div>
+    <h2>Pick a day!</h2>
+    <p class="sub">When works for you, love?</p>
+
+    <div class="calendar">
+      <div class="cal-header">
+        <button class="cal-nav" onclick="changeMonth(-1)">‹</button>
+        <span class="cal-month" id="cal-title"></span>
+        <button class="cal-nav" onclick="changeMonth(1)">›</button>
+      </div>
+      <div class="cal-grid" id="cal-grid"></div>
+    </div>
+
+    <button class="btn btn-primary btn-disabled" id="date-next" onclick="goToPage(4)">okay next →</button>
+  </div>
+
+  <!-- ══════════════════════════════
+       PAGE 4 — Pick a Time
+  ══════════════════════════════ -->
+  <div class="page" id="page4">
+    <div class="progress-bar">
+      <div class="step-heart done">❤️</div><div class="step-line done"></div>
+      <div class="step-heart done">❤️</div><div class="step-line done"></div>
+      <div class="step-heart done">❤️</div><div class="step-line done"></div>
+      <div class="step-heart active">❤️</div><div class="step-line"></div>
+      <div class="step-heart">❤️</div><div class="step-line"></div>
+      <div class="step-heart">❤️</div>
+    </div>
+
+    <div style="font-size:32px; margin-bottom:6px">🕐✨</div>
+    <h2>So... when are you free?</h2>
+    <p class="sub">Pick a time that works for you</p>
+
+    <div class="time-options">
+      <div class="time-card" onclick="selectTime(this, '4:00 PM')">
+        <div class="t-icon">🌅</div>
+        <div class="t-label">4 PM</div>
+        <div class="t-sub">Afternoon</div>
+      </div>
+      <div class="time-card" onclick="selectTime(this, '7:00 PM')">
+        <div class="t-icon">🌙</div>
+        <div class="t-label">7 PM</div>
+        <div class="t-sub">Evening</div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn-disabled" id="time-next" onclick="goToPage(5)">okay next →</button>
+  </div>
+
+  <!-- ══════════════════════════════
+       PAGE 5 — Pick a Movie
+  ══════════════════════════════ -->
+  <div class="page" id="page5">
+    <div class="progress-bar">
+      <div class="step-heart done">❤️</div><div class="step-line done"></div>
+      <div class="step-heart done">❤️</div><div class="step-line done"></div>
+      <div class="step-heart done">❤️</div><div class="step-line done"></div>
+      <div class="step-heart done">❤️</div><div class="step-line done"></div>
+      <div class="step-heart active">❤️</div><div class="step-line"></div>
+      <div class="step-heart">❤️</div>
+    </div>
+
+    <div style="font-size:28px; margin-bottom:4px">🎥✨</div>
+    <h2>What are we watching?</h2>
+    <p class="sub">(you can pick more than one btw)</p>
+
+    <div class="movie-grid">
+      <div class="movie-card" onclick="toggleMovie(this, 'Obsession')">
+        <div class="m-icon">😱</div>
+        <div class="m-name">Obsession</div>
+      </div>
+      <div class="movie-card" onclick="toggleMovie(this, 'Zombeid')">
+        <div class="m-icon">🧟</div>
+        <div class="m-name">Zombeid</div>
+      </div>
+      <div class="movie-card" onclick="toggleMovie(this, 'Hoppers')">
+        <div class="m-icon">🦫</div>
+        <div class="m-name">Hoppers</div>
+      </div>
+      <div class="movie-card" onclick="toggleMovie(this, 'Master Of The Universe')">
+        <div class="m-icon">⚔️</div>
+        <div class="m-name">Master Of The Universe</div>
+      </div>
+      <div class="movie-card" onclick="toggleMovie(this, 'Harry Potter')">
+        <div class="m-icon">⚡</div>
+        <div class="m-name">Harry Potter</div>
+      </div>
+      <div class="movie-card" onclick="toggleMovie(this, 'Titanic')">
+        <div class="m-icon">🚢</div>
+        <div class="m-name">Titanic</div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn-disabled" id="movie-next" onclick="goToPage(6)">this one! →</button>
+  </div>
+
+  <!-- ══════════════════════════════
+       PAGE 6 — It's a Date!
+  ══════════════════════════════ -->
+  <div class="page" id="page6">
+    <div class="progress-bar">
+      <div class="step-heart done">❤️</div><div class="step-line done"></div>
+      <div class="step-heart done">❤️</div><div class="step-line done"></div>
+      <div class="step-heart done">❤️</div><div class="step-line done"></div>
+      <div class="step-heart done">❤️</div><div class="step-line done"></div>
+      <div class="step-heart done">❤️</div><div class="step-line done"></div>
+      <div class="step-heart active">❤️</div>
+    </div>
+
+    <div style="font-size:38px; margin-bottom:6px">❤️🎬</div>
+    <h2>It's a date!</h2>
+    <p class="sub">can't wait for our movie night 🍿</p>
+
+    <div class="summary-box">
+      <div class="summary-row">
+        <div class="s-icon">📅</div>
+        <div>
+          <div class="s-label">WHEN</div>
+          <div class="s-value" id="s-date"></div>
+          <div class="s-time-val" id="s-time"></div>
+        </div>
+      </div>
+      <div class="summary-row">
+        <div class="s-icon">🎬</div>
+        <div>
+          <div class="s-label">MOVIE</div>
+          <div class="s-value" id="s-movie"></div>
+        </div>
+      </div>
+    </div>
+
+    <button class="copy-btn" onclick="copyPlan()">📋 Copy plan & text me</button>
+  </div>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>
